@@ -1,0 +1,13 @@
+Explain how conditional statements work in PHP?
+answer:
+If we want to execute some code if a condition is true and another code if a condition is false, use 
+the if....else statement
+• PHP If & ElseIf Statements
+• If we want to execute some code if one of several conditions are true use the elseif statement
+• Syntax:
+if (condition)
+    code to be executed if condition is true;       
+elseif(condition)
+    code to be executed if condition is true;
+else
+    code to be executed if condition is false

@@ -1,0 +1,23 @@
+que: What are super global variables in PHP? List at least five super global arrays and their use.
+
+Answer:
+ A global variable is a programming language construct, a variable type that is declared outside any function and is accessible to all functions throughout the program.
+• The PHP super global variables are:
+
+• $GLOBALS  :- $GLOBALS is a PHP super global variable which is used to access global variables
+from anywhere in the PHP script (also from within functions or methods).
+
+• $ SERVER :- :$_SERVER is a PHP super global variable which holds 
+information about headers, paths, and script locations.
+
+• $_POST :- It is used to collect data sent to the script via HTTP POST method, typically from form submissions. It is Useful for sending sensitive data, such as passwords, since data is not visible in the URL.
+
+• $_GET :- This array is used to collect data sent to the script via URL parameters using the HTTP GET method. it is used for retrieving data from forms or links.
+
+• $_COOKIE :- This array is used to retrieve cookie values that have been set by the server.
+Useful for storing user preferences, authentication tokens, and other small pieces of information.
+
+• $_SESSION
+• $_REQUEST 
+• $_FILES
+• $_ENV 

@@ -1,0 +1,312 @@
+ Create multiple tables and perform queries using:
+o SELECT, UPDATE, DELETE, INSERT
+o WHERE, LIKE, GROUP BY, HAVING
+o LIMIT, OFFSET, Subqueries, AND, OR, 
+
+create table customer 
+(cid int primary key,
+c_name varchar(20) not null,
+mobile_no varchar(12) unique not null,
+salary int);
+
+mysql> show tables;
++--------------------+
+| Tables_in_batch4_5 |
++--------------------+
+| customer           |
+| payment            |
+| student            |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from customer;
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   1 | Kevin  | 7412589632 |  25000 |
+|   2 | Riya   | 8541236975 |  51000 |
+|   3 | Ankit  | 8521479621 |  63000 |
+|   4 | Siya   | 9632147852 |  74000 |
++-----+--------+------------+--------+
+4 rows in set (0.02 sec)
+
+mysql> select * from payment;
++--------+------+-------+--------+------------+
+| pay_id | cid  | mode  | amount | payment_dt |
++--------+------+-------+--------+------------+
+|      1 |    1 | Cash  |   5200 | 2024-02-24 |
+|      2 |    1 | G-Pay |   2000 | 2024-10-30 |
++--------+------+-------+--------+------------+
+2 rows in set (0.01 sec)
+
+
+mysql> select c_name,mobile_no from customer;
++--------+------------+
+| c_name | mobile_no  |
++--------+------------+
+| Kevin  | 7412589632 |
+| Riya   | 8541236975 |
+| Ankit  | 8521479621 |
+| Siya   | 9632147852 |
++--------+------------+
+4 rows in set (0.00 sec)
+
+
+mysql> select * from customer where cid=3;
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   3 | Ankit  | 8521479621 |  63000 |
++-----+--------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from customer where salary>60000;
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   3 | Ankit  | 8521479621 |  63000 |
+|   4 | Siya   | 9632147852 |  74000 |
++-----+--------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from customer where salary<60000;
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   1 | Kevin  | 7412589632 |  25000 |
+|   2 | Riya   | 8541236975 |  51000 |
++-----+--------+------------+--------+
+2 rows in set (0.00 sec)
+
+
+mysql> select c_name, salary from customer where salary between 20000 and 40000;
++--------+--------+
+| c_name | salary |
++--------+--------+
+| Kevin  |  25000 |
++--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select c_name, salary from customer where salary not between 20000 and 40000;
++--------+--------+
+| c_name | salary |
++--------+--------+
+| Riya   |  51000 |
+| Ankit  |  63000 |
+| Siya   |  74000 |
++--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from payment where mode="cash" and amount=2500;
+Empty set (0.00 sec)
+
+mysql> select * from payment where mode="cash" or amount=2500;
++--------+------+------+--------+------------+
+| pay_id | cid  | mode | amount | payment_dt |
++--------+------+------+--------+------------+
+|      1 |    1 | Cash |   5200 | 2024-02-24 |
++--------+------+------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from payment where not mode="cash" or amount=2500;
++--------+------+-------+--------+------------+
+| pay_id | cid  | mode  | amount | payment_dt |
++--------+------+-------+--------+------------+
+|      2 |    1 | G-Pay |   2000 | 2024-10-30 |
++--------+------+-------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from customer where salary is null;
+Empty set (0.00 sec)
+
+mysql> select * from customer where salary is not null;
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   1 | Kevin  | 7412589632 |  25000 |
+|   2 | Riya   | 8541236975 |  51000 |
+|   3 | Ankit  | 8521479621 |  63000 |
+|   4 | Siya   | 9632147852 |  74000 |
++-----+--------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select c_name as customername from customer;
++--------------+
+| customername |
++--------------+
+| Kevin        |
+| Riya         |
+| Ankit        |
+| Siya         |
++--------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from customer where c_name like 'a%';
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   3 | Ankit  | 8521479621 |  63000 |
++-----+--------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from customer where c_name like '%a';
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   2 | Riya   | 8541236975 |  51000 |
+|   4 | Siya   | 9632147852 |  74000 |
++-----+--------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from customer where c_name like '_i%';
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   2 | Riya   | 8541236975 |  51000 |
+|   4 | Siya   | 9632147852 |  74000 |
++-----+--------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from customer where c_name like '__i%';
+Empty set (0.00 sec)
+
+mysql> select * from customer where c_name like '__v%';
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   1 | Kevin  | 7412589632 |  25000 |
++-----+--------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from customer where c_name like '___i%';
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   1 | Kevin  | 7412589632 |  25000 |
+|   3 | Ankit  | 8521479621 |  63000 |
++-----+--------+------------+--------+
+2 rows in set (0.00 sec)
+
+
+mysql> select * from customer order by c_name;
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   3 | Ankit  | 8521479621 |  63000 |
+|   1 | Kevin  | 7412589632 |  25000 |
+|   2 | Riya   | 8541236975 |  51000 |
+|   4 | Siya   | 9632147852 |  74000 |
++-----+--------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from customer order by c_name desc;
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   4 | Siya   | 9632147852 |  74000 |
+|   2 | Riya   | 8541236975 |  51000 |
+|   1 | Kevin  | 7412589632 |  25000 |
+|   3 | Ankit  | 8521479621 |  63000 |
++-----+--------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from customer order by mobile_no;
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   1 | Kevin  | 7412589632 |  25000 |
+|   3 | Ankit  | 8521479621 |  63000 |
+|   2 | Riya   | 8541236975 |  51000 |
+|   4 | Siya   | 9632147852 |  74000 |
++-----+--------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select count(cid) from customer;
++------------+
+| count(cid) |
++------------+
+|          4 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from customer;
++-------------+
+| avg(salary) |
++-------------+
+|  53250.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary) from customer;
++-------------+
+| sum(salary) |
++-------------+
+|      213000 |
++-------------+
+1 row in set (0.00 sec)
+
+
+mysql> select max(salary) from customer;
++-------------+
+| max(salary) |
++-------------+
+|       74000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select min(salary) as minimum_salary from customer;
++----------------+
+| minimum_salary |
++----------------+
+|          25000 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select * from customer limit 3;
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   1 | Kevin  | 7412589632 |  25000 |
+|   2 | Riya   | 8541236975 |  51000 |
+|   3 | Ankit  | 8521479621 |  63000 |
++-----+--------+------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from customer limit 3 offset 2;
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   3 | Ankit  | 8521479621 |  63000 |
+|   4 | Siya   | 9632147852 |  74000 |
++-----+--------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from customer limit 3 offset 3;
++-----+--------+------------+--------+
+| cid | c_name | mobile_no  | salary |
++-----+--------+------------+--------+
+|   4 | Siya   | 9632147852 |  74000 |
++-----+--------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select distinct(salary) from customer;
++--------+
+| salary |
++--------+
+|  25000 |
+|  51000 |
+|  63000 |
+|  74000 |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> update customer set salary= 51000 where cid=1;
+
+mysql> select distinct(salary) from customer;
++--------+
+| salary |
++--------+
+|  51000 |
+|  63000 |
+|  74000 |
++--------+
