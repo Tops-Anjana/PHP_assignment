@@ -1,0 +1,33 @@
+Ques 7: Discuss the difference between for loop, foreach loop, and do-while loop in PHP
+
+for loop:
+A for loop is generally used when you know in advance how many times you want to repeat a block of code. It requires an initial condition, a loop condition, and an increment (or decrement) statement.
+syntax:
+for(initialization;condition;increment/decrement){
+    body of the loop;
+}
+
+for each loop:-
+1. The for each loop is used to loop through arrays.
+2. For every loop, the value of the current array element is assigned to $value (and
+the array pointer is moved by one) -so on the next loop, you'll be looking at the
+next element.
+Syntax
+foreach(array as value){
+code to be executed;
+}
+
+do.. while loop:-
+The do...while loop will execute a block of code at least once-it then will
+repeat the loop as long as a condition is true.
+Syntax:
+do{
+code to be executed;
+} while (condition);
+
+while loop:-
+The while loop will execute a block of code if and as long as a
+condition is true.
+Syntax
+while (condition)
+code to be executed;
