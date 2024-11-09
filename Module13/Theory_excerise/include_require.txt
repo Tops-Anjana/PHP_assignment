@@ -1,0 +1,10 @@
+
+Using include:
+
+If header.php or footer.php is missing, the page will still load, but it will display a warning message.
+This might be useful in cases where the page can still function without the header or footer.
+
+Using require:
+
+If header.php or footer.php is missing, PHP will generate a fatal error and stop script execution.
+This is useful when the header and footer are essential for the page’s structure.

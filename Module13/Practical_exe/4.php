@@ -1,4 +1,4 @@
-// Write a PHP program to determine if a number is even or odd using if conditions.
+ <!-- Write a PHP program to determine if a number is even or odd using if conditions. -->
 <htm>
 <body>
 

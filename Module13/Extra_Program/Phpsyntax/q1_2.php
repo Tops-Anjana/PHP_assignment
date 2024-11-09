@@ -28,9 +28,9 @@
 // Sample user data
 $users = [
     ['name' => 'Anjana', 'email' => 'abc@gmail.com', 'age' => 28],
-    ['name' => 'Jane', 'email' => 'jane@gmail.in', 'age' => 34],
+    ['name' => 'Jay', 'email' => 'jay@gmail.in', 'age' => 34],
     ['name' => 'Sam', 'email' => 'sam@outlook.com', 'age' => 22],
-    ['name' => 'Lisa ', 'email' => 'lisa@yahoo.com', 'age' => 30],
+    ['name' => 'Riya ', 'email' => 'riya@yahoo.com', 'age' => 30],
 ];
 
 // Generate the HTML table
